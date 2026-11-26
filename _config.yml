@@ -53,6 +53,8 @@ baseurl: ""                        # empty for a user site (username.github.io)
 
 exclude:
   - README.md
+  - AGENTS.md
+  - WORKFLOW.md
   - Gemfile
   - Gemfile.lock
   - vendor/
