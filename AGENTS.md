@@ -35,6 +35,11 @@ Mason's day-to-day workflow (writing a post, adding a quote) lives in
 - Theme: Kanagawa Dragon, with accents saturated slightly above stock. All
   colors are SCSS variables at the top of `assets/main.scss`; use those
   rather than new hex values.
+- Code highlighting is deliberately minimal: only function and class definitions
+  (blue), control flow (orange), and strings (green); comments are dimmed.
+  Rouge can't tell control flow from other keywords, so
+  `assets/js/highlight.js` tags tokens by their text. Don't add more colors
+  to code; if everything is highlighted, nothing is.
 
 | Thing | Where |
 |---|---|
