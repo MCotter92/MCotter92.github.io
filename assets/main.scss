@@ -1,0 +1,416 @@
+---
+# Front matter is required so Jekyll processes this file.
+---
+
+// ---------------------------------------------------------------------------
+// Kanagawa Dragon
+// https://github.com/rebelot/kanagawa.nvim (lua/kanagawa/colors.lua + themes.lua)
+// Roles follow the theme's own `dragon` mapping wherever possible.
+// Chromatic accents are saturated a notch above stock Dragon (same hue and
+// lightness) so they read less pastel; grays and backgrounds are stock.
+// ---------------------------------------------------------------------------
+
+// UI
+$dragonBlack0: #0d0c0c; // bg_m3 / float bg
+$dragonBlack3: #181616; // bg
+$dragonBlack4: #282727; // bg_p1
+$dragonBlack5: #393836; // bg_p2
+$dragonBlack6: #625e5a; // nontext
+$dragonWhite:  #c5c9c5; // fg
+$oldWhite:     #C8C093; // fg_dim
+$waveBlue1:    #223249; // bg_visual (selection)
+
+// Syntax
+$dragonGreen2: #8fab72; // string            (stock #8a9a7b)
+$dragonPink:   #ac87ae; // number            (stock #a292a3)
+$dragonOrange: #c98f68; // constant          (stock #b6927b)
+$dragonYellow: #d6b87a; // identifier        (stock #c4b28a)
+$dragonGray:   #a6a69c; // parameter
+$dragonGray2:  #9e9b93; // punctuation
+$dragonGray3:  #7a8382; // special
+$dragonBlue2:  #7faabe; // function          (stock #8ba4b0)
+$dragonViolet: #7f8eb6; // keyword/statement (stock #8992a7)
+$dragonRed:    #d66a62; // operator/regex    (stock #c4746e)
+$dragonAqua:   #85ada8; // type              (stock #8ea4a2)
+$dragonAsh:    #737c73; // comment
+$dragonTeal:   #8a9cc2; // special1          (stock #949fb5)
+
+// Diff
+$winterGreen:  #2B3328;
+$winterRed:    #43242B;
+$samuraiRed:   #E82424;
+
+// Layout
+$content-width: 720px;
+$spacing-unit:  30px;
+$on-palm:       600px;
+$base-font:     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$mono-font:     ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+// ---------------------------------------------------------------------------
+// Base / reset
+// ---------------------------------------------------------------------------
+*, *::before, *::after { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $dragonBlack3;
+  color: $dragonWhite;
+  font: 400 16px/1.6 $base-font;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; margin: 1.6em 0 0.6em; }
+p, ul, ol, pre, table, blockquote { margin: 0 0 1em; }
+img { max-width: 100%; height: auto; }
+
+.wrapper {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 0 $spacing-unit;
+}
+
+.page-content {
+  flex: 1;
+  padding: $spacing-unit 0;
+}
+
+// ---------------------------------------------------------------------------
+// Lists of posts
+// ---------------------------------------------------------------------------
+.post-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+    margin-bottom: 0.5em;
+  }
+
+  .post-meta { flex: 0 0 7em; font-size: 0.9em; }
+  .post-tags { margin-left: auto; }
+}
+
+// ---------------------------------------------------------------------------
+// Tags
+// ---------------------------------------------------------------------------
+.post-tags,
+.tag-index {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+
+.post-header .post-tags { margin-left: 0.8em; }
+
+.tag,
+.tag:visited {
+  padding: 0 0.55em;
+  border: 1px solid $dragonBlack5;
+  border-radius: 3px;
+  background-color: $dragonBlack4;
+  color: $dragonAqua;
+  font-size: 0.8em;
+  line-height: 1.7;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    border-color: $dragonAqua;
+    color: $dragonAqua;
+    text-decoration: none;
+  }
+}
+
+.tag-index { margin-bottom: $spacing-unit; .tag { font-size: 0.9em; } }
+.tag-count { color: $dragonGray3; }
+
+.tag-section h2 {
+  margin-top: 0.8em;
+  scroll-margin-top: 1em;
+  &::before { content: "#"; color: $dragonBlack6; margin-right: 0.15em; }
+}
+
+// ---------------------------------------------------------------------------
+// AI disclosure callout
+// ---------------------------------------------------------------------------
+.ai-disclosure {
+  margin: 0 0 $spacing-unit;
+  padding: 0.7em 1em;
+  border: 1px solid $dragonBlack5;
+  border-left: 3px solid $dragonAqua;
+  border-radius: 3px;
+  background-color: $dragonBlack4;
+  color: $dragonGray;
+  font-size: 0.9em;
+}
+
+// ---------------------------------------------------------------------------
+// Commonplace book
+// ---------------------------------------------------------------------------
+.quote {
+  margin: 0 0 1.2em;
+  padding: 0.9em 1.2em;
+  border: 1px solid $dragonBlack5;
+  border-left: 3px solid $dragonYellow;
+  border-radius: 3px;
+  background-color: $dragonBlack4;
+
+  blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: $dragonWhite;
+    font-style: italic;
+    p:last-child { margin-bottom: 0; }
+  }
+
+  figcaption {
+    margin-top: 0.6em;
+    color: $dragonGray3;
+    font-size: 0.9em;
+    &::before { content: "— "; }
+  }
+
+  cite { color: $dragonGray; }
+}
+
+// Highlight the section a tag link jumped to.
+.tag-section h2:target { color: $dragonAqua; }
+
+.post-title { margin-top: 0; margin-bottom: 0.2em; }
+.post-header { margin-bottom: $spacing-unit; }
+
+pre, code { font-family: $mono-font; font-size: 0.9em; }
+code { padding: 1px 5px; border: 1px solid; border-radius: 3px; }
+pre {
+  padding: 10px 14px;
+  border: 1px solid;
+  border-radius: 3px;
+  overflow-x: auto;
+  code { padding: 0; border: 0; }
+}
+.highlight pre { border: 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  th, td { padding: 6px 10px; border: 1px solid; text-align: left; }
+}
+
+blockquote { margin-left: 0; padding-left: 1em; }
+
+::selection {
+  background: $waveBlue1;
+  color: $dragonWhite;
+}
+
+h1, h2, h3, h4, h5, h6,
+.post-title,
+.page-heading,
+strong {
+  color: $dragonWhite;
+}
+
+a,
+a:visited {
+  color: $dragonBlue2;
+}
+
+a:hover {
+  color: $dragonBlue2;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:focus-visible {
+  outline: 2px solid $dragonBlue2;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+// ---------------------------------------------------------------------------
+// Header / nav
+// ---------------------------------------------------------------------------
+.site-header {
+  padding: 14px 0;
+  border-bottom: 1px solid;
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5em 1.5em;
+  }
+
+  border-top: 3px solid $dragonRed;
+  border-bottom-color: $dragonBlack5;
+}
+
+.site-title,
+.site-title:visited {
+  font-size: 1.4em;
+  text-decoration: none;
+  color: $dragonWhite;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+
+  &:hover {
+    color: $dragonWhite;
+    text-decoration: none;
+  }
+}
+
+.site-nav { display: flex; gap: 1.2em; }
+
+.site-nav .page-link,
+.site-nav .page-link:visited {
+  text-decoration: none;
+  color: $dragonGray;
+
+  &:hover {
+    color: $dragonWhite;
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: $on-palm) {
+  .wrapper { padding: 0 16px; }
+  .post-list li { flex-direction: column; gap: 0.2em; }
+  .post-list .post-tags { margin-left: 0; }
+}
+
+// ---------------------------------------------------------------------------
+// Content
+// ---------------------------------------------------------------------------
+.post-meta { color: $dragonGray3; }
+
+.post-link,
+.post-link:visited {
+  color: $dragonWhite;
+
+  &:hover { color: $dragonBlue2; }
+}
+
+blockquote {
+  color: $oldWhite;
+  border-left: 3px solid $dragonBlack6;
+  letter-spacing: normal;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid $dragonBlack5;
+  margin: $spacing-unit 0;
+}
+
+input[type="checkbox"] { accent-color: $dragonBlue2; }
+
+// Task lists: the checkbox is the marker, so drop the bullet.
+.task-list-item {
+  list-style: none;
+}
+
+.task-list-item-checkbox {
+  margin: 0 0.5em 0 -1.4em;
+}
+
+pre,
+code {
+  background-color: $dragonBlack0;
+  border-color: $dragonBlack4;
+  color: $dragonWhite;
+}
+
+.highlight,
+.highlighter-rouge .highlight {
+  background: $dragonBlack0;
+}
+
+table {
+  color: $dragonWhite;
+  border-color: $dragonBlack5;
+
+  tr:nth-child(even) { background-color: $dragonBlack4; }
+
+  th {
+    background-color: $dragonBlack4;
+    color: $dragonWhite;
+    border-color: $dragonBlack5;
+    border-bottom-color: $dragonBlack6;
+  }
+
+  td { border-color: $dragonBlack5; }
+}
+
+.site-footer {
+  padding: $spacing-unit * 0.6 0;
+  border-top: 1px solid $dragonBlack5;
+  color: $dragonGray3;
+  font-size: 0.9em;
+
+  .wrapper { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5em; }
+  .footer-links { display: flex; gap: 1em; }
+}
+
+// ---------------------------------------------------------------------------
+// Syntax highlighting (Rouge classes → Kanagawa Dragon `syn` roles)
+// ---------------------------------------------------------------------------
+.highlight {
+  color: $dragonWhite;
+
+  // Comments
+  .c, .cm, .c1, .cs { color: $dragonAsh; font-style: italic; font-weight: normal; }
+  .cp               { color: $dragonRed; font-style: normal; font-weight: normal; } // preproc
+
+  // Keywords / statements
+  .k, .kd, .kn, .kp, .kr, .ow { color: $dragonViolet; font-weight: normal; }
+  .kc                         { color: $dragonOrange; font-weight: normal; } // true/false/nil
+  .kt                         { color: $dragonAqua;   font-weight: normal; } // types
+
+  // Operators & punctuation
+  .o { color: $dragonRed; font-weight: normal; }
+  .p { color: $dragonGray2; }
+
+  // Strings
+  .s, .sa, .sb, .sc, .sd, .s1, .s2, .sh, .sx { color: $dragonGreen2; }
+  .se, .si                                   { color: $dragonRed; }   // escapes / interpolation
+  .sr                                        { color: $dragonRed; }   // regex
+  .ss                                        { color: $dragonYellow; }
+
+  // Numbers
+  .m, .mb, .mf, .mh, .mi, .mo, .il { color: $dragonPink; }
+
+  // Names
+  .nf, .fm          { color: $dragonBlue2; font-weight: normal; } // functions
+  .nc, .nn          { color: $dragonAqua;  font-weight: normal; } // classes / namespaces
+  .no               { color: $dragonOrange; }                     // constants
+  .nb, .bp          { color: $dragonTeal; }                       // builtins
+  .ne               { color: $dragonAqua;  font-weight: normal; }
+  .na               { color: $dragonYellow; }                     // attributes
+  .nt               { color: $dragonViolet; }                     // tags
+  .nv, .vc, .vg, .vi { color: $dragonWhite; }
+  .ni, .nl          { color: $dragonYellow; }
+  .nd               { color: $dragonRed; }                        // decorators
+
+  // Generic / diff
+  .gd    { color: $dragonWhite; background-color: $winterRed; }
+  .gd .x { color: $dragonWhite; background-color: $winterRed; }
+  .gi    { color: $dragonWhite; background-color: $winterGreen; }
+  .gi .x { color: $dragonWhite; background-color: $winterGreen; }
+  .gh, .gu { color: $dragonBlue2; }
+  .go, .gp { color: $dragonGray3; }
+  .gr, .gt { color: $samuraiRed; }
+  .ge    { font-style: italic; }
+  .gs    { font-weight: bold; }
+  .err   { color: $samuraiRed; background-color: transparent; }
+  .w     { color: $dragonBlack6; }
+}
